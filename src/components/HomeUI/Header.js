@@ -46,7 +46,7 @@ const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 24px;
+  padding: 15px;
 `;
 
 const HeaderIcon = styled.img`
