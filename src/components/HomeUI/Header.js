@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import HeaderIconPhoto from '../../images/google_meet_header.jpg';
-import firebase from 'firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../firebase';
 import { Button } from '@material-ui/core';
@@ -16,7 +15,7 @@ const Header = () => {
   const HeaderOptions = ({ title, tooltip }) => {
     return (
       <Button style={{ width: 'fit-content', padding: '5px 0' }}>
-        <span class='material-icons-outlined' style={{ color: '#63676c' }}>
+        <span className='material-icons-outlined' style={{ color: '#63676c' }}>
           {title}
         </span>
       </Button>
@@ -46,12 +45,13 @@ const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px;
+  padding: 10px 15px 10px 15px;
+  height: 5%;
 `;
 
 const HeaderIcon = styled.img`
   object-fit: contain;
-  height: 40px;
+  height: 35px;
   width: auto;
 
   cursor: pointer;

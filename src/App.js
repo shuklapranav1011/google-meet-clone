@@ -10,7 +10,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import Login from './components/pages/Login';
 
 function App() {
-  const [user, loading, error] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
 
   return (
     <Provider store={store}>
