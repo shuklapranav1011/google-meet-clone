@@ -1,4 +1,5 @@
 import { Button } from '@material-ui/core';
+import ImageSlider from './ImageSlider';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -42,18 +43,18 @@ const Body = () => {
           </a>
         </LearnMore>
       </BodyLeft>
-      <BodyRight>Right</BodyRight>
+      <BodyRight>
+        <ImageSlider></ImageSlider>
+      </BodyRight>
     </BodyContainer>
   );
 };
 
 const BodyContainer = styled.div`
   flex: 1;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
   align-items: center;
-  justify-content: center;
-  /* border: 4px solid purple; */
+  justify-content: space-evenly;
 `;
 
 // BODY LEFT
@@ -163,6 +164,9 @@ const LearnMore = styled.div`
 
 // BODY RIGHT
 
-const BodyRight = styled.div``;
+const BodyRight = styled.div`
+  min-width: 500px;
+  max-width: 500px;
+`;
 
 export default Body;
