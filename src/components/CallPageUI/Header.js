@@ -7,12 +7,28 @@ import { auth } from '../../firebase';
 const Header = () => {
   const [user] = useAuthState(auth);
 
-  const HeaderOptions = ({ title, tooltip }) => {
+  const HeaderOptions = ({ title, tooltip, alert }) => {
     return (
-      <Button>
+      <Button style={{ position: 'relative' }}>
         <span className='material-icons-outlined' style={{ color: '#63676c' }}>
           {title}
         </span>
+        {alert ? (
+          <span
+            class='material-icons'
+            style={{
+              color: '#00796b',
+              fontSize: '10px',
+              position: 'absolute',
+              right: '18px',
+              top: '5px',
+            }}
+          >
+            circle
+          </span>
+        ) : (
+          ''
+        )}
       </Button>
     );
   };
@@ -20,7 +36,7 @@ const Header = () => {
   return (
     <HeaderContainer>
       <HeaderOptions title='people' />
-      <HeaderOptions title='chat' />
+      <HeaderOptions title='chat' alert />
       <UserInfoContainer>
         <p>You</p>
         <RoundImg src={user?.photoURL} alt='<user_photo>' />
