@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 import i3 from '../../images/imageSlider2.png';
 import i4 from '../../images/imageSlider1.png';
