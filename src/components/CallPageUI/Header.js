@@ -1,12 +1,9 @@
 import { Button } from '@material-ui/core';
 import React from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
+
 import styled from 'styled-components';
-import { auth } from '../../firebase';
 
-const Header = () => {
-  const [user] = useAuthState(auth);
-
+const Header = ({ user }) => {
   const HeaderOptions = ({ title, tooltip, alert }) => {
     return (
       <Button style={{ position: 'relative' }}>

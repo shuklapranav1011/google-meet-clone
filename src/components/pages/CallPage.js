@@ -4,17 +4,20 @@ import Header from '../CallPageUI/Header';
 import Footer from '../CallPageUI/Footer';
 import MeetingInfo from '../CallPageUI/MeetingInfo';
 import Chat from '../CallPageUI/Chat';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../../firebase';
 
 // import MyClock from '../layout/Clock.js';
 const CallPage = () => {
+  const [user] = useAuthState(auth);
   return (
     <Fragment>
       <CallPageContainer>
         <VideoContainer src='' controls></VideoContainer>
-        <Header></Header>
-        <Footer></Footer>
-        <MeetingInfo></MeetingInfo>
-        <Chat></Chat>
+        <Header user={user}></Header>
+        <Footer user={user}></Footer>
+        <MeetingInfo user={user}></MeetingInfo>
+        <Chat user={user}></Chat>
       </CallPageContainer>
     </Fragment>
   );
