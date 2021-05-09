@@ -16,7 +16,7 @@ const Body = () => {
         </h3>
 
         <BodyButtons>
-          <Button>
+          <Button id='callButton'>
             <span
               className='material-icons-outlined'
               style={{ marginRight: '10px' }}
@@ -27,7 +27,11 @@ const Body = () => {
           </Button>
           <div>
             <div className='material-icons'>keyboard</div>
-            <input type='text' placeholder='Enter a code or a link' />
+            <input
+              id='callInput'
+              type='text'
+              placeholder='Enter a code or a link'
+            />
           </div>
         </BodyButtons>
 

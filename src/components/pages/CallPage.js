@@ -13,10 +13,36 @@ const CallPage = () => {
   return (
     <Fragment>
       <CallPageContainer>
-        <VideoContainer src='' controls></VideoContainer>
+        {/* Video Camera Input */}
+        <div class='videos'>
+          <span>
+            <h1>Local</h1>
+            <VideoContainer
+              src=''
+              controls
+              id='webcamVideo'
+              autoplay
+              playsinline
+            ></VideoContainer>
+          </span>
+
+          <span>
+            <h1>Remote</h1>
+            <VideoContainer
+              src=''
+              controls
+              id='remoteVideo'
+              autoplay
+              playsinline
+            ></VideoContainer>
+          </span>
+        </div>
+
+        <div class=''></div>
+        {/* Video Camera Input */}
         <Header user={user}></Header>
         <Footer user={user}></Footer>
-        <MeetingInfo user={user}></MeetingInfo>
+        {/* <MeetingInfo user={user}></MeetingInfo> */}
         <Chat user={user}></Chat>
       </CallPageContainer>
     </Fragment>
@@ -28,10 +54,10 @@ const CallPageContainer = styled.div`
 `;
 
 const VideoContainer = styled.video`
-  position: absolute;
+  /* position: absolute;
   height: 100%;
   width: 100%;
   object-fit: cover;
-  z-index: -1;
+  z-index: -1; */
 `;
 export default CallPage;

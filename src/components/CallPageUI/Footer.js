@@ -2,11 +2,13 @@ import React, { Fragment } from 'react';
 import styled from 'styled-components';
 
 const Footer = () => {
-  const CallOption = ({ active, title }) => {
+  const CallOption = ({ disabled, title }) => {
     return (
       <Fragment>
         <CallOptionContainer>
-          <span class='material-icons'>{active ? title : `${title}_off`}</span>
+          <span class='material-icons'>
+            {disabled ? title : `${title}_off`}
+          </span>
         </CallOptionContainer>
       </Fragment>
     );
@@ -39,9 +41,9 @@ const Footer = () => {
 
       <FooterMiddle>
         <div>
-          <CallOption title='mic'></CallOption>
-          <CallOption title='call_end' active></CallOption>
-          <CallOption title='videocam'></CallOption>
+          <CallOption title='mic' disabled></CallOption>
+          <CallOption title='call_end' id='hangupButton'></CallOption>
+          <CallOption title='videocam' id='webcamButton' disabled></CallOption>
         </div>
       </FooterMiddle>
       <FooterRight>

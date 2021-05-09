@@ -20,7 +20,7 @@ const MeetingInfo = ({ user }) => {
           Or share this meeting link with others you want <br /> in the meeting
         </h4>
         <LinkBox>
-          <p>meet.google.com/fpf-cvvu-npe</p>
+          <p id='currentRoom'></p>
           <span class='material-icons-outlined'>content_copy</span>
         </LinkBox>
         <InfoBox>
