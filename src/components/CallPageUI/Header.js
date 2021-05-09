@@ -38,7 +38,7 @@ const Header = ({ user }) => {
         <p>You</p>
         <RoundImg src={user?.photoURL} alt='<user_photo>' />
         <div>
-          <i class='material-icons-outlined'>mic_off</i>
+          <i class='material-icons'>mic_off</i>
         </div>
       </UserInfoContainer>
     </HeaderContainer>
@@ -88,10 +88,10 @@ const UserInfoContainer = styled.div`
       margin-top: 22px;
       margin-left: 5px;
       font-size: 14px;
-      background-color: red;
+      background-color: #d93025;
       border-radius: 50%;
       color: white;
-      padding: 1px;
+      padding: 2px;
     }
   }
 `;
