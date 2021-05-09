@@ -75,7 +75,7 @@ const FooterContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   width: 100%;
-  padding: 20px 0;
+  height: 90px;
 `;
 
 const UserInfo = styled.div`

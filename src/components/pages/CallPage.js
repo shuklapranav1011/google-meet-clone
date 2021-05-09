@@ -23,7 +23,9 @@ const CallPage = () => {
   );
 };
 
-const CallPageContainer = styled.div``;
+const CallPageContainer = styled.div`
+  height: 100vh;
+`;
 
 const VideoContainer = styled.video`
   position: absolute;
