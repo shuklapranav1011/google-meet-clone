@@ -1,7 +1,25 @@
 import { Button } from '@material-ui/core';
 import ImageSlider from './ImageSlider';
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
+
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  setLocalStream,
+  setRemoteStream,
+  addTrackPC,
+  addTrackRemoteStream,
+  setCallButton,
+  setAnswerButton,
+  toggleWebcam,
+  setWebcamVideo,
+  setCallInput,
+  setHangupButton,
+  initializePC,
+} from '../../redux/actions/videoActions';
+
+import firebase from 'firebase';
+import { Link } from 'react-router-dom';
 
 const Body = () => {
   return (
@@ -16,7 +34,7 @@ const Body = () => {
         </h3>
 
         <BodyButtons>
-          <Button id='callButton'>
+          <Button>
             <span
               className='material-icons-outlined'
               style={{ marginRight: '10px' }}
@@ -25,13 +43,10 @@ const Body = () => {
             </span>
             New Meeting
           </Button>
+
           <div>
             <div className='material-icons'>keyboard</div>
-            <input
-              id='callInput'
-              type='text'
-              placeholder='Enter a code or a link'
-            />
+            <input type='text' placeholder='Enter a code or a link' />
           </div>
         </BodyButtons>
 

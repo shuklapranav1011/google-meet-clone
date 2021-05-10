@@ -42,7 +42,7 @@ const Footer = () => {
       <FooterMiddle>
         <div>
           <CallOption title='mic' disabled></CallOption>
-          <CallOption title='call_end' id='hangupButton'></CallOption>
+          <CallOption title='phone' disabled></CallOption>
           <CallOption title='videocam' id='webcamButton' disabled></CallOption>
         </div>
       </FooterMiddle>
