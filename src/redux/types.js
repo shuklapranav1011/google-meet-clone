@@ -12,3 +12,6 @@ export const SET_HANGUP_BUTTON = 'SET_HANGUP_BUTTON';
 //pc
 
 export const SET_PC = 'SET_PC';
+
+export const SET_MEETING_TYPE = 'SET_MEETING_TYPE';
+export const SET_MEETING_LEFT = 'SET_MEETING_LEFT';

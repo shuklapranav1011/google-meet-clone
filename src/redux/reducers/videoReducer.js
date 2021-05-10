@@ -11,6 +11,8 @@ import {
   SET_CALL_INPUT,
   SET_HANGUP_BUTTON,
   SET_PC,
+  SET_MEETING_TYPE,
+  SET_MEETING_LEFT,
 } from '../types';
 
 const initialState = {
@@ -34,6 +36,8 @@ const initialState = {
   callInput: '',
   answerButton: false,
   hangupButton: false,
+  meetingType: 'create',
+  meetingLeft: 'false',
 };
 
 const videoReducer = (state = initialState, action) => {
@@ -100,6 +104,17 @@ const videoReducer = (state = initialState, action) => {
       return {
         ...state,
         pc: action.payload,
+      };
+
+    case SET_MEETING_TYPE:
+      return {
+        ...state,
+        meetingType: action.payload,
+      };
+    case SET_MEETING_LEFT:
+      return {
+        ...state,
+        meetingLeft: action.payload,
       };
     default:
       return state;

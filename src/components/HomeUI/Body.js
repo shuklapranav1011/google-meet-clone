@@ -2,26 +2,24 @@ import { Button } from '@material-ui/core';
 import ImageSlider from './ImageSlider';
 import React, { useRef } from 'react';
 import styled from 'styled-components';
-
-import { useSelector, useDispatch } from 'react-redux';
-import {
-  setLocalStream,
-  setRemoteStream,
-  addTrackPC,
-  addTrackRemoteStream,
-  setCallButton,
-  setAnswerButton,
-  toggleWebcam,
-  setWebcamVideo,
-  setCallInput,
-  setHangupButton,
-  initializePC,
-} from '../../redux/actions/videoActions';
-
-import firebase from 'firebase';
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { setCallInput, setMeetingType } from '../../redux/actions/videoActions';
+import firebase from 'firebase';
 
 const Body = () => {
+  const inputText = useRef('');
+
+  const dispatch = useDispatch();
+  const video = useSelector((state) => state.video);
+  const { callInput } = video;
+
+  async function createRoom() {
+    const db = firebase.firestore();
+    const roomRef = await db.collection('rooms').doc();
+    dispatch(setCallInput(roomRef?.id));
+  }
+
   return (
     <BodyContainer>
       <BodyLeft>
@@ -34,7 +32,12 @@ const Body = () => {
         </h3>
 
         <BodyButtons>
-          <Button>
+          <Button
+            onClick={() => {
+              createRoom();
+              setMeetingType('create');
+            }}
+          >
             <span
               className='material-icons-outlined'
               style={{ marginRight: '10px' }}
@@ -43,11 +46,27 @@ const Body = () => {
             </span>
             New Meeting
           </Button>
-
+          <Link to={callInput === '' ? '/' : `/${callInput}`}>
+            Create the Meeting
+          </Link>
           <div>
             <div className='material-icons'>keyboard</div>
-            <input type='text' placeholder='Enter a code or a link' />
+            <input
+              type='text'
+              placeholder='Enter a code or a link'
+              ref={inputText}
+              value={callInput}
+              onChange={(e) => {
+                dispatch(setCallInput(e.target.value));
+              }}
+              onClick={(e) => {
+                dispatch(setMeetingType('join'));
+              }}
+            />
           </div>
+          <Link to={callInput === '' ? '/' : `/${callInput}`}>
+            Join the meeting
+          </Link>
         </BodyButtons>
 
         <div className='line'></div>
@@ -162,6 +181,7 @@ const BodyButtons = styled.div`
       width: 80%;
       :focus {
         outline: none;
+        background-color: rgba(126, 126, 126, 0.1);
       }
     }
   }

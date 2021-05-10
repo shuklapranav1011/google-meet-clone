@@ -11,6 +11,8 @@ import {
   SET_CALL_INPUT,
   SET_HANGUP_BUTTON,
   SET_PC,
+  SET_MEETING_TYPE,
+  SET_MEETING_LEFT,
 } from '../types';
 
 export const initializePC = (val) => {
@@ -93,6 +95,20 @@ export const setCallInput = (value) => {
 export const setHangupButton = (value) => {
   return {
     type: SET_HANGUP_BUTTON,
+    payload: value,
+  };
+};
+
+export const setMeetingType = (value) => {
+  return {
+    type: SET_MEETING_TYPE,
+    payload: value,
+  };
+};
+
+export const setMeetingLeft = (value) => {
+  return {
+    type: SET_MEETING_LEFT,
     payload: value,
   };
 };
