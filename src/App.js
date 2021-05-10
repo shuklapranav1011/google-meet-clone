@@ -8,7 +8,6 @@ import ErrorPage from './components/pages/ErrorPage';
 import { auth } from './firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import Login from './components/pages/Login';
-import { useEffect } from 'react';
 
 function App() {
   const [user, loading] = useAuthState(auth);

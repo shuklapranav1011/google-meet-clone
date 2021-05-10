@@ -2,12 +2,23 @@ import { Button } from '@material-ui/core';
 import React from 'react';
 import styled from 'styled-components';
 
+import { useSelector } from 'react-redux';
+
 const MeetingInfo = ({ user }) => {
+  const { callInput } = useSelector((state) => state.video);
+
+  const closeMeetingInfo = (e) => {
+    const meetingInfoDiv = e.target.parentElement.parentElement;
+    meetingInfoDiv.style.display = 'none';
+  };
+
   return (
     <MeetingInfoContainer>
       <Header>
         <h3>Your meeting's ready</h3>
-        <span class='material-icons-outlined'>close</span>
+        <span class='material-icons-outlined' onClick={closeMeetingInfo}>
+          close
+        </span>
       </Header>
       <Body>
         <Button>
@@ -20,7 +31,7 @@ const MeetingInfo = ({ user }) => {
           Or share this meeting link with others you want <br /> in the meeting
         </h4>
         <LinkBox>
-          <p id='currentRoom'></p>
+          <p>{callInput}</p>
           <span class='material-icons-outlined'>content_copy</span>
         </LinkBox>
         <InfoBox>

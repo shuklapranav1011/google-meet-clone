@@ -12,20 +12,20 @@ import firebase from 'firebase';
 import {
   setMeetingType,
   setMeetingLeft,
+  toggleWebcam,
+  toggleMic,
 } from '../../redux/actions/videoActions';
-import { Button, ButtonBase, Link } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 
 const CallPage = () => {
   // ------------------ webRTC Setup below--------------------------
-
-  const firestore = firebase.firestore();
 
   const [user] = useAuthState(auth);
 
   const video = useSelector((state) => state.video);
   const dispatch = useDispatch();
 
-  const { callInput, meetingType, meetingLeft } = video;
+  const { callInput, meetingType, meetingLeft, mic, videocam } = video;
 
   const localVideoRef = useRef({});
   const remoteVideoRef = useRef({});
@@ -45,7 +45,6 @@ const CallPage = () => {
   let peerConnection = null;
   let localStream = null;
   let remoteStream = null;
-  let roomDialog = null;
   let roomId = null;
 
   async function createRoom(roomId) {
@@ -209,7 +208,7 @@ const CallPage = () => {
     remoteVideoRef.current.srcObject = remoteStream;
 
     remoteVideoRef.current.onloadedmetadata = function (e) {
-      video.play();
+      remoteVideoRef.current.play();
     };
     // console.log('Stream:', document.querySelector('#localVideo').srcObject);
     // document.querySelector('#cameraBtn').disabled = true;
@@ -289,25 +288,6 @@ const CallPage = () => {
   // -------------------- Footer below-----------------------------------------------
 
   const Footer = () => {
-    const CallOption = ({ disabled, title }) => {
-      return (
-        <Fragment>
-          <CallOptionContainer>
-            <span
-              class='material-icons'
-              onClick={(e) => {
-                hangUp();
-                dispatch(setMeetingLeft(true));
-                dispatch(setMeetingType('meeting_left'));
-              }}
-            >
-              {disabled ? title : `${title}_off`}
-            </span>
-          </CallOptionContainer>
-        </Fragment>
-      );
-    };
-
     return (
       <FooterContainer>
         <UserInfo>
@@ -335,13 +315,36 @@ const CallPage = () => {
 
         <FooterMiddle>
           <div>
-            <CallOption title='mic' disabled></CallOption>
-            <CallOption title='phone' disabled></CallOption>
-            <CallOption
-              title='videocam'
-              id='webcamButton'
-              disabled
-            ></CallOption>
+            {/* mic button */}
+            <CallOptionContainer
+              onClick={(e) => {
+                dispatch(toggleMic());
+              }}
+            >
+              <span class='material-icons'>{mic ? 'mic' : `mic_off`}</span>
+            </CallOptionContainer>
+
+            {/* hangup button */}
+            <CallOptionContainer
+              onClick={(e) => {
+                hangUp();
+                dispatch(setMeetingLeft(true));
+                dispatch(setMeetingType('meeting_left'));
+              }}
+            >
+              <span class='material-icons'>phone</span>
+            </CallOptionContainer>
+
+            {/* videocam button */}
+            <CallOptionContainer
+              onClick={(e) => {
+                dispatch(toggleWebcam());
+              }}
+            >
+              <span class='material-icons'>
+                {videocam ? 'videocam' : `videocam_off`}
+              </span>
+            </CallOptionContainer>
           </div>
         </FooterMiddle>
         <FooterRight>
@@ -432,7 +435,7 @@ const CallPage = () => {
           {/* Video Camera */}
           <Header user={user}></Header>
           <Footer user={user}></Footer>
-          {/* <MeetingInfo user={user}></MeetingInfo> */}
+          <MeetingInfo user={user}></MeetingInfo>
           <Chat user={user}></Chat>
         </CallPageContainer>
       </Fragment>
@@ -442,103 +445,13 @@ const CallPage = () => {
 
 // ---------------------- styled components below -------------------------
 
-const MeetingLeftContainer = styled.div`
-  height: 50vh;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  > div {
-    width: fit-content;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    > h1 {
-      font-size: 36px;
-      font-weight: 400;
-      line-height: 44px;
-      color: #3c4043;
-      cursor: default;
-      max-width: 700px;
-      margin-bottom: 30px;
-    }
-
-    > button {
-      font-size: small;
-      color: #00796b;
-      text-transform: none;
-      font-weight: 600;
-      margin-bottom: 30px;
-    }
-
-    > div {
-      border: 1px solid rgba(126, 126, 126, 0.4);
-      padding: 10px 20px;
-      > div {
-        display: grid;
-        grid-template-columns: auto 1fr;
-        align-items: center;
-        margin-right: 30px;
-        > div {
-          text-align: left;
-          > h2 {
-            font-size: 1.125rem;
-            font-weight: 400;
-            line-height: 1.5rem;
-          }
-          > p {
-            font-size: 0.875rem;
-            font-weight: 400;
-            line-height: 1.25rem;
-            color: #80868b;
-          }
-        }
-        > span {
-          font-size: 50px;
-          align-self: center;
-          padding: 10px;
-          color: #4285f4;
-        }
-      }
-
-      > h3 {
-        text-align: right;
-        > button {
-          font-size: small;
-          color: #00796b;
-          text-transform: none;
-          font-weight: 600;
-        }
-      }
-    }
-  }
-`;
-
-const ReturnHomeTag = styled.a`
-  background-color: #00796b;
-  padding: 0 10px;
-  border-radius: 4px;
-  text-decoration: none;
-  > span {
-    font-family: Roboto, sans-serif;
-    color: white;
-    text-decoration: none;
-    cursor: pointer;
-    font-size: small;
-    font-weight: 800;
-    line-height: 36px;
-  }
-`;
-
 const CallPageContainer = styled.div`
   height: 100vh;
 `;
 
 const VideoContainer = styled.video`
   position: absolute;
-  height: calc(100vh - 90px);
+  height: calc(100vh - 30px);
   width: calc(100% - 350px);
   object-fit: cover;
   z-index: -1;
@@ -676,4 +589,93 @@ const ControlOptionContainer = styled.div`
   text-transform: none;
 `;
 
+const MeetingLeftContainer = styled.div`
+  height: 50vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  > div {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    > h1 {
+      font-size: 36px;
+      font-weight: 400;
+      line-height: 44px;
+      color: #3c4043;
+      cursor: default;
+      max-width: 700px;
+      margin-bottom: 30px;
+    }
+
+    > button {
+      font-size: small;
+      color: #00796b;
+      text-transform: none;
+      font-weight: 600;
+      margin-bottom: 30px;
+    }
+
+    > div {
+      border: 1px solid rgba(126, 126, 126, 0.4);
+      padding: 10px 20px;
+      > div {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        align-items: center;
+        margin-right: 30px;
+        > div {
+          text-align: left;
+          > h2 {
+            font-size: 1.125rem;
+            font-weight: 400;
+            line-height: 1.5rem;
+          }
+          > p {
+            font-size: 0.875rem;
+            font-weight: 400;
+            line-height: 1.25rem;
+            color: #80868b;
+          }
+        }
+        > span {
+          font-size: 50px;
+          align-self: center;
+          padding: 10px;
+          color: #4285f4;
+        }
+      }
+
+      > h3 {
+        text-align: right;
+        > button {
+          font-size: small;
+          color: #00796b;
+          text-transform: none;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+`;
+
+const ReturnHomeTag = styled.a`
+  background-color: #00796b;
+  padding: 0 10px;
+  border-radius: 4px;
+  text-decoration: none;
+  > span {
+    font-family: Roboto, sans-serif;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: small;
+    font-weight: 800;
+    line-height: 36px;
+  }
+`;
 export default CallPage;
