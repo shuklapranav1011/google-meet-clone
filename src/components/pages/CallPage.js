@@ -380,6 +380,32 @@ const CallPage = () => {
   if (meetingLeft === true) {
     return (
       <Fragment>
+        <Button
+          onClick={(e) => {
+            e.preventDefault();
+            console.log('signing out');
+            auth.signOut();
+          }}
+          style={{
+            width: 'fit-content',
+            padding: '5px 0',
+            marginLeft: '5px',
+            position: 'fixed',
+            right: '20px',
+            top: '20px',
+            textTransform: 'none',
+          }}
+        >
+          <p style={{ color: '#63676c', fontSize: 'normal', padding: '0 5px' }}>
+            Logout{' '}
+          </p>
+          <span
+            className='material-icons-outlined'
+            style={{ color: '#63676c', fontSize: '2rem' }}
+          >
+            logout
+          </span>
+        </Button>
         <MeetingLeftContainer>
           <div>
             <h1>You left the meeting.</h1>

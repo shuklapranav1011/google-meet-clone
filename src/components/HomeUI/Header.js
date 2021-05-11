@@ -14,7 +14,9 @@ const Header = () => {
 
   const HeaderOptions = ({ title, tooltip }) => {
     return (
-      <Button style={{ width: 'fit-content', padding: '5px 0' }}>
+      <Button
+        style={{ width: 'fit-content', padding: '5px 0', marginLeft: '5px' }}
+      >
         <span className='material-icons-outlined' style={{ color: '#63676c' }}>
           {title}
         </span>
@@ -35,6 +37,25 @@ const Header = () => {
         <HeaderContentRight>
           <HeaderOptions title='apps' />
           <RoundImg src={user?.photoURL} alt='<user_photo>' />
+          <Button
+            onClick={(e) => {
+              e.preventDefault();
+              console.log('signing out');
+              auth.signOut();
+            }}
+            style={{
+              width: 'fit-content',
+              padding: '5px 0',
+              marginLeft: '5px',
+            }}
+          >
+            <span
+              className='material-icons-outlined'
+              style={{ color: '#63676c' }}
+            >
+              logout
+            </span>
+          </Button>
         </HeaderContentRight>
       </HeaderContent>
     </HeaderContainer>
