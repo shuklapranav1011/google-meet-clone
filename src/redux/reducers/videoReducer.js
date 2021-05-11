@@ -10,7 +10,7 @@ import {
 const initialState = {
   callInput: '',
   hangupButton: false,
-  meetingType: 'create',
+  meetingType: '',
   meetingLeft: 'false',
   videocam: true,
   phone: true,

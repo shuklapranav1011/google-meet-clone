@@ -1,7 +1,7 @@
 import { Button } from '@material-ui/core';
 import ImageSlider from './ImageSlider';
 import React, { useRef } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { setCallInput, setMeetingType } from '../../redux/actions/videoActions';
@@ -12,7 +12,7 @@ const Body = () => {
 
   const dispatch = useDispatch();
   const video = useSelector((state) => state.video);
-  const { callInput } = video;
+  const { callInput, meetingType } = video;
 
   async function createRoom() {
     const db = firebase.firestore();
@@ -32,41 +32,52 @@ const Body = () => {
         </h3>
 
         <BodyButtons>
-          <Button
-            onClick={() => {
-              createRoom();
-              setMeetingType('create');
-            }}
-          >
-            <span
-              className='material-icons-outlined'
-              style={{ marginRight: '10px' }}
+          <LeftButtons>
+            <Button
+              onClick={() => {
+                createRoom();
+                dispatch(setMeetingType('create'));
+              }}
             >
-              video_call
-            </span>
-            New Meeting
-          </Button>
-          <Link to={callInput === '' ? '/' : `/${callInput}`}>
-            Create the Meeting
-          </Link>
-          <div>
-            <div className='material-icons'>keyboard</div>
-            <input
-              type='text'
-              placeholder='Enter a code or a link'
-              ref={inputText}
-              value={callInput}
-              onChange={(e) => {
-                dispatch(setCallInput(e.target.value));
-              }}
-              onClick={(e) => {
-                dispatch(setMeetingType('join'));
-              }}
-            />
-          </div>
-          <Link to={callInput === '' ? '/' : `/${callInput}`}>
-            Join the meeting
-          </Link>
+              <span
+                className='material-icons-outlined'
+                style={{ marginRight: '10px' }}
+              >
+                video_call
+              </span>
+              New Meeting
+            </Button>
+            <CreateMeetLink
+              meetingType={meetingType}
+              to={callInput === '' ? '/' : `/${callInput}`}
+            >
+              Create
+            </CreateMeetLink>
+          </LeftButtons>
+
+          <RightButtons>
+            <div>
+              <div className='material-icons'>keyboard</div>
+              <input
+                type='text'
+                placeholder='Enter a code or a link'
+                ref={inputText}
+                value={callInput}
+                onChange={(e) => {
+                  dispatch(setCallInput(e.target.value));
+                }}
+                onClick={(e) => {
+                  dispatch(setMeetingType('join'));
+                }}
+              />
+            </div>
+            <JoinMeetLink
+              meetingType={meetingType}
+              to={callInput === '' ? '/' : `/${callInput}`}
+            >
+              Join
+            </JoinMeetLink>
+          </RightButtons>
         </BodyButtons>
 
         <div className='line'></div>
@@ -89,10 +100,10 @@ const Body = () => {
 };
 
 const BodyContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   flex: 1;
-  display: flex;
   align-items: center;
-  justify-content: space-evenly;
 `;
 
 // BODY LEFT
@@ -102,8 +113,10 @@ const BodyLeft = styled.div`
   flex-basis: 35rem;
   flex-direction: column;
   flex-shrink: 1;
-  max-width: 35rem;
+  max-width: 45rem;
   padding: 1em 3em;
+  justify-self: center;
+  /* border: 1px solid black; */
 
   > h1 {
     font-family: 'Google Sans Display', Roboto, Arial, sans-serif;
@@ -127,9 +140,8 @@ const BodyLeft = styled.div`
   }
 
   .line {
-    max-width: 35rem;
+    width: 40rem;
     border-top: 1px solid grey;
-
     margin: 30px 0;
   }
 `;
@@ -137,7 +149,12 @@ const BodyLeft = styled.div`
 const BodyButtons = styled.div`
   display: flex;
   align-items: center;
-
+  /* border: 1px solid black; */
+`;
+const LeftButtons = styled.div`
+  border-right: 1px solid rgba(128, 128, 128, 0.3);
+  display: flex;
+  align-items: center;
   > button {
     background-color: #00796b;
     color: white;
@@ -146,13 +163,40 @@ const BodyButtons = styled.div`
     font-size: 1rem;
     margin-right: 2rem;
     text-transform: none;
-    padding: 15px;
-
+    padding: 10px;
+    width: fit-content;
     :hover {
       background-color: #00675b;
     }
   }
+`;
 
+const CreateMeetLink = styled(Link)`
+  text-decoration: none;
+  cursor: default;
+  color: rgba(128, 128, 128, 0.3);
+  padding: 10px 20px;
+  border-radius: 5px;
+  display: none;
+  transition: all 200ms ease-in-out;
+  ${(props) =>
+    props.meetingType === 'create' &&
+    css`
+      display: block;
+      color: #00796b;
+      :hover {
+        cursor: pointer;
+        background-color: rgba(128, 128, 128, 0.3);
+      }
+    `}
+`;
+
+const RightButtons = styled.div`
+  margin-left: 2rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
   > div {
     border: 1px grey solid;
     color: grey;
@@ -162,6 +206,8 @@ const BodyButtons = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    padding: 0 10px;
+    margin-right: 20px;
     :hover {
       border-color: black;
     }
@@ -187,6 +233,26 @@ const BodyButtons = styled.div`
   }
 `;
 
+const JoinMeetLink = styled(Link)`
+  text-decoration: none;
+  cursor: default;
+  color: rgba(128, 128, 128, 0.3);
+  padding: 10px 20px;
+  border-radius: 5px;
+  display: none;
+  transition: all 200ms ease-in-out;
+  ${(props) =>
+    props.meetingType === 'join' &&
+    css`
+      display: block;
+      color: #00796b;
+      :hover {
+        cursor: pointer;
+        background-color: rgba(128, 128, 128, 0.3);
+      }
+    `}
+`;
+
 const LearnMore = styled.div`
   > a {
     color: grey;
@@ -206,6 +272,7 @@ const LearnMore = styled.div`
 const BodyRight = styled.div`
   min-width: 500px;
   max-width: 500px;
+  justify-self: center;
 `;
 
 export default Body;
