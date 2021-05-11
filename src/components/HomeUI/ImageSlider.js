@@ -92,12 +92,12 @@ const ImageSlider = () => {
 const ImageContainer = styled.img`
   width: 80%;
   height: auto;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 `;
 
 const ImageContent = styled.div`
   text-align: center;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   width: 100%;
 
   > h2 {
@@ -128,6 +128,6 @@ const CarousalContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 `;
 export default ImageSlider;
