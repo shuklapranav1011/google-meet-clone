@@ -31,7 +31,7 @@ const ImageSlider = () => {
           </ImageContent>
         </CarousalContainer>
 
-        <div>
+        <CarousalContainer>
           <ImageContainer src={i2} alt='' />
           <ImageContent>
             <h2>See everyone together</h2>
@@ -47,9 +47,9 @@ const ImageSlider = () => {
               <span style={{ color: 'grey' }}>.</span>
             </div>
           </ImageContent>
-        </div>
+        </CarousalContainer>
 
-        <div>
+        <CarousalContainer>
           <ImageContainer src={i3} alt='' />
           <ImageContent>
             <h2>Plan ahead</h2>
@@ -65,9 +65,9 @@ const ImageSlider = () => {
               <span style={{ color: 'grey' }}>.</span>
             </div>
           </ImageContent>
-        </div>
+        </CarousalContainer>
 
-        <div>
+        <CarousalContainer>
           <ImageContainer src={i4} alt='' />
           <ImageContent>
             <h2>Your meeting is safe</h2>
@@ -83,19 +83,22 @@ const ImageSlider = () => {
               <span style={{ color: '#00675b' }}>.</span>
             </div>
           </ImageContent>
-        </div>
+        </CarousalContainer>
       </Carousel>
     </Fragment>
   );
 };
 
 const ImageContainer = styled.img`
-  height: 330px;
-  width: 330px;
+  width: 80%;
+  height: auto;
+  border: 1px solid black;
 `;
 
 const ImageContent = styled.div`
   text-align: center;
+  border: 1px solid black;
+  width: 100%;
 
   > h2 {
     font-size: 1.5rem;
@@ -125,5 +128,6 @@ const CarousalContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border: 1px solid black;
 `;
 export default ImageSlider;

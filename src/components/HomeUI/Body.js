@@ -140,7 +140,7 @@ const BodyLeft = styled.div`
   }
 
   .line {
-    width: 40rem;
+    max-width: 40rem;
     border-top: 1px solid grey;
     margin: 30px 0;
   }
