@@ -312,7 +312,7 @@ const CallPage = () => {
             <CallOptionContainer
               onClick={(e) => {
                 dispatch(toggleMic());
-                toggleAudioStream();
+                // toggleAudioStream();
               }}
             >
               <span class='material-icons'>{mic ? 'mic' : `mic_off`}</span>
@@ -333,7 +333,7 @@ const CallPage = () => {
             <CallOptionContainer
               onClick={(e) => {
                 dispatch(toggleWebcam());
-                toggleVideoStream();
+                // toggleVideoStream();
               }}
             >
               <span class='material-icons'>
