@@ -1,7 +1,26 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled, { css } from 'styled-components';
+import ChatBox from './ChatBox';
+import { db } from '../../firebase';
+import { useCollection } from 'react-firebase-hooks/firestore';
+import MessageItem from './MessageItem';
 
-const Chat = () => {
+const Chat = ({ roomID, user }) => {
+  const bottomRef = useRef(null);
+  console.log('roomID');
+  console.log(roomID);
+
+  console.log('user');
+  console.log(user);
+
+  const [messages, loading] = useCollection(
+    db
+      .collection('rooms')
+      .doc(roomID)
+      .collection('messages')
+      .orderBy('timeStamp', 'asc')
+  );
+
   return (
     <ChatContainer>
       <Header>
@@ -20,18 +39,21 @@ const Chat = () => {
       </HeaderTabs>
 
       <ChatSection>
-        <ChatBlock>
-          <Sender>
-            <p>
-              You <small>Time</small>
-            </p>
-            <Message>Actual Message</Message>
-          </Sender>
+        <ChatBlock bottomRef={bottomRef}>
+          {messages?.docs.map((doc) => {
+            const { message, timeStamp, user } = doc.data();
+            return (
+              <MessageItem
+                key={doc.id} //message doc id
+                message={message}
+                timeStamp={timeStamp}
+                user={user}
+              />
+            );
+          })}
+          <div ref={bottomRef}></div>
         </ChatBlock>
-        <ChatBox>
-          <input type='text' placeholder='Send message to everyone' />
-          <span class='material-icons'>send</span>
-        </ChatBox>
+        <ChatBox roomID={roomID}></ChatBox>
       </ChatSection>
     </ChatContainer>
   );
@@ -72,6 +94,14 @@ const Header = styled.div`
   }
 `;
 
+const ChatBlock = styled.div`
+  padding: 20px;
+  margin-bottom: 30px;
+  /* border: 1px solid black; */
+  max-height: calc(100vh - 90px - 220px);
+  overflow-y: auto;
+`;
+
 const HeaderTabs = styled.div`
   display: flex;
   align-items: center;
@@ -105,66 +135,10 @@ const Tab = styled.div`
 
 const ChatSection = styled.div`
   flex: 1;
-  overflow-y: scroll;
   /* border: 1px solid black; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-`;
-
-const ChatBlock = styled.div`
-  padding: 20px;
-  margin-bottom: 30px;
-  order: 1px solid black;
-`;
-
-const Sender = styled.div`
-  font-weight: 500;
-  font-size: 14px;
-
-  > small {
-    margin-left: 5px;
-    font-weight: 300;
-  }
-`;
-
-const Message = styled.div`
-  margin: 0;
-  padding-top: 5px;
-  color: #555;
-  font-size: 14px;
-`;
-
-const ChatBox = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  color: #555;
-
-  padding: 20px;
-  box-shadow: 0 1px 10px rgba(126, 126, 126, 0.3);
-
-  > input {
-    border: none;
-    outline: none;
-    border-bottom: 2px solid #eee;
-    width: 80%;
-    padding: 5px;
-    transition: border 300ms ease-in-out;
-
-    :focus {
-      border-bottom: 2px solid #00796b;
-    }
-  }
-
-  > span {
-    cursor: pointer;
-    color: grey;
-    font-size: 1.5rem;
-    :hover {
-      color: #00796b;
-    }
-  }
 `;
 
 export default Chat;

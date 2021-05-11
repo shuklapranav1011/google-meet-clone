@@ -48,8 +48,6 @@ const CallPage = () => {
   let roomId = null;
 
   async function createRoom(roomId) {
-    // document.querySelector('#createBtn').disabled = true;
-    // document.querySelector('#joinBtn').disabled = true;
     const db = firebase.firestore();
     const roomRef = db.collection('rooms').doc(`${roomId}`);
 
@@ -89,10 +87,6 @@ const CallPage = () => {
     await roomRef.set(roomWithOffer);
     roomId = roomRef.id;
     console.log(`New room created with SDP offer. Room ID: ${roomRef.id}`);
-    // document.querySelector(
-    //   '#currentRoom'
-    // ).innerText = `Current room is ${roomRef.id} - You are the caller!`;
-    // Code for creating a room above
 
     peerConnection.addEventListener('track', (event) => {
       console.log('Got remote track:', event.streams[0]);
@@ -210,11 +204,6 @@ const CallPage = () => {
     remoteVideoRef.current.onloadedmetadata = function (e) {
       remoteVideoRef.current.play();
     };
-    // console.log('Stream:', document.querySelector('#localVideo').srcObject);
-    // document.querySelector('#cameraBtn').disabled = true;
-    // document.querySelector('#joinBtn').disabled = false;
-    // document.querySelector('#createBtn').disabled = false;
-    // document.querySelector('#hangupBtn').disabled = false;
   }
 
   async function hangUp(e) {
@@ -230,14 +219,6 @@ const CallPage = () => {
     if (peerConnection) {
       peerConnection.close();
     }
-
-    // document.querySelector('#localVideo').srcObject = null;
-    // document.querySelector('#remoteVideo').srcObject = null;
-    // document.querySelector('#cameraBtn').disabled = false;
-    // document.querySelector('#joinBtn').disabled = true;
-    // document.querySelector('#createBtn').disabled = true;
-    // document.querySelector('#hangupBtn').disabled = true;
-    // document.querySelector('#currentRoom').innerText = '';
 
     // Delete room on hangup
     if (roomId) {
@@ -285,6 +266,18 @@ const CallPage = () => {
   }
   //---------------------webRTC Setup above -------------------------------------
 
+  // ---------------------- toggle audio and video streams below-------------------
+  const toggleAudioStream = () => {
+    localStream.getAudioTracks()[0].enabled = !localStream.getAudioTracks()[0]
+      .enabled;
+  };
+
+  const toggleVideoStream = () => {
+    localStream.getVideoTracks()[0].enabled = !localStream.getVideoTracks()[0]
+      .enabled;
+  };
+  // ---------------------toggle audio and video streams above --------------------
+
   // -------------------- Footer below-----------------------------------------------
 
   const Footer = () => {
@@ -302,7 +295,7 @@ const CallPage = () => {
               marginRight: '5px',
             }}
           >
-            mic_off
+            {mic ? 'mic' : `mic_off`}
           </span>
           <p style={{ color: 'white', fontSize: '1rem' }}>You</p>
         </UserInfo>
@@ -319,6 +312,7 @@ const CallPage = () => {
             <CallOptionContainer
               onClick={(e) => {
                 dispatch(toggleMic());
+                toggleAudioStream();
               }}
             >
               <span class='material-icons'>{mic ? 'mic' : `mic_off`}</span>
@@ -339,6 +333,7 @@ const CallPage = () => {
             <CallOptionContainer
               onClick={(e) => {
                 dispatch(toggleWebcam());
+                toggleVideoStream();
               }}
             >
               <span class='material-icons'>
@@ -436,7 +431,7 @@ const CallPage = () => {
           <Header user={user}></Header>
           <Footer user={user}></Footer>
           <MeetingInfo user={user}></MeetingInfo>
-          <Chat user={user}></Chat>
+          <Chat roomID={callInput} user={user}></Chat>
         </CallPageContainer>
       </Fragment>
     );
