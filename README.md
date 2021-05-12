@@ -7,6 +7,8 @@
 Hey, thanks for visiting my Google Meet Clone. This is a one to one video chat and messaging app based on Google Meet UI.
 Messaging supports group chat but there is no option of group video chat...yet. I will be adding feature of group video chat in future.
 
+Since I don't have access to any TURN servers, video call is possible only between devices on the same network.
+
 ## Dependencies used:
 
 - ReactJs, React-hooks, React Router Dom
