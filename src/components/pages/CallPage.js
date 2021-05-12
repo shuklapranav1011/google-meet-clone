@@ -393,6 +393,28 @@ const CallPage = () => {
     return (
       <Fragment>
         <Button
+          href='/'
+          style={{
+            width: 'fit-content',
+            padding: '5px 0',
+            marginLeft: '5px',
+            position: 'fixed',
+            right: '140px',
+            top: '20px',
+            textTransform: 'none',
+          }}
+        >
+          <p style={{ color: '#63676c', fontSize: 'normal', padding: '0 5px' }}>
+            Home{' '}
+          </p>
+          <span
+            className='material-icons-outlined'
+            style={{ color: '#63676c', fontSize: '2rem' }}
+          >
+            home
+          </span>
+        </Button>
+        <Button
           onClick={(e) => {
             e.preventDefault();
             console.log('signing out');

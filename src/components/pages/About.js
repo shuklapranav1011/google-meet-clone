@@ -1,6 +1,7 @@
 import React from 'react';
 import AboutLinks from '../AboutPage UI/AboutLinks';
 import styled from 'styled-components';
+import { Button } from '@material-ui/core';
 
 const About = () => {
   return (
@@ -86,6 +87,52 @@ const About = () => {
           </Me>
         </Info>
         <AboutLinks></AboutLinks>
+        <Button
+          href='/'
+          style={{
+            width: 'fit-content',
+            padding: '5px 0',
+            marginLeft: '5px',
+            position: 'fixed',
+            right: '140px',
+            top: '20px',
+            textTransform: 'none',
+          }}
+        >
+          <p style={{ color: '#63676c', fontSize: 'normal', padding: '0 5px' }}>
+            Home{' '}
+          </p>
+          <span
+            className='material-icons-outlined'
+            style={{ color: '#63676c', fontSize: '2rem' }}
+          >
+            home
+          </span>
+        </Button>
+        <Button
+          onClick={(e) => {
+            e.preventDefault();
+          }}
+          style={{
+            width: 'fit-content',
+            padding: '5px 0',
+            marginLeft: '5px',
+            position: 'fixed',
+            right: '20px',
+            top: '20px',
+            textTransform: 'none',
+          }}
+        >
+          <p style={{ color: '#63676c', fontSize: 'normal', padding: '0 5px' }}>
+            Logout{' '}
+          </p>
+          <span
+            className='material-icons-outlined'
+            style={{ color: '#63676c', fontSize: '2rem' }}
+          >
+            logout
+          </span>
+        </Button>
       </AboutInfo>
     </AboutContainer>
   );
