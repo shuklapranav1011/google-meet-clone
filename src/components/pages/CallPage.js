@@ -56,6 +56,12 @@ const CallPage = () => {
 
     registerPeerConnectionListeners();
 
+    console.log('LOCAL STREAM IN CREATE ROOM');
+    console.log(localStream);
+
+    console.log('REMOTE STREAM IN CREATE ROOM');
+    console.log(remoteStream);
+
     localStream.getTracks().forEach((track) => {
       peerConnection.addTrack(track, localStream);
     });
@@ -268,13 +274,13 @@ const CallPage = () => {
 
   // ---------------------- toggle audio and video streams below-------------------
   const toggleAudioStream = () => {
-    localStream.getAudioTracks()[0].enabled = !localStream.getAudioTracks()[0]
-      .enabled;
+    localStream.getAudioTracks()[0].enabled =
+      !localStream.getAudioTracks()[0].enabled;
   };
 
   const toggleVideoStream = () => {
-    localStream.getVideoTracks()[0].enabled = !localStream.getVideoTracks()[0]
-      .enabled;
+    localStream.getVideoTracks()[0].enabled =
+      !localStream.getVideoTracks()[0].enabled;
   };
   // ---------------------toggle audio and video streams above --------------------
 
@@ -312,6 +318,7 @@ const CallPage = () => {
             <CallOptionContainer
               onClick={(e) => {
                 dispatch(toggleMic());
+                // console.log()
                 // toggleAudioStream();
               }}
             >
@@ -375,7 +382,12 @@ const CallPage = () => {
     if (meetingType === 'join') {
       await joinRoomById(callInput);
     }
+    console.log('LOCAL STREAM IN USEEFFECT');
+    console.log(localStream);
   }, []);
+
+  console.log('LOCAL STREAM OUTSIDE USEEFFECT');
+  console.log(localStream);
 
   if (meetingLeft === true) {
     return (
@@ -445,13 +457,7 @@ const CallPage = () => {
 
           {/* <h1>Remote</h1> */}
 
-          <VideoContainer
-            controls
-            ref={remoteVideoRef}
-            autoplay
-            muted
-            remote
-          ></VideoContainer>
+          <VideoContainer controls ref={remoteVideoRef} remote></VideoContainer>
 
           {/* Video Camera */}
           <Header user={user}></Header>
@@ -471,6 +477,7 @@ const CallPageContainer = styled.div`
 `;
 
 const VideoContainer = styled.video`
+  transform: rotateY(180deg);
   position: absolute;
   height: calc(100vh - 30px);
   width: calc(100% - 350px);
