@@ -8,6 +8,7 @@ import ErrorPage from './components/pages/ErrorPage';
 import { auth } from './firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import Login from './components/pages/Login';
+import About from './components/pages/About';
 
 function App() {
   const [user, loading] = useAuthState(auth);
@@ -21,6 +22,7 @@ function App() {
           <Login></Login>
         ) : (
           <Switch>
+            <Route exact path='/about' component={About}></Route>
             <Route exact path='/:id' component={CallPage} />
             <Route exact path='/' component={HomePage} />
             <Route component={ErrorPage} />

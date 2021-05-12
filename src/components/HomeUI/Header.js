@@ -4,6 +4,7 @@ import HeaderIconPhoto from '../../images/google_meet_header.jpg';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../firebase';
 import { Button } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   let current = new Date();
@@ -37,6 +38,7 @@ const Header = () => {
         <HeaderContentRight>
           <HeaderOptions title='apps' />
           <RoundImg src={user?.photoURL} alt='<user_photo>' />
+          <StyledLink to='/about'>About</StyledLink>
           <Button
             onClick={(e) => {
               e.preventDefault();
@@ -117,4 +119,19 @@ const RoundImg = styled.img`
   }
 `;
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  width: fit-content;
+  padding: 5px 20px;
+  margin-left: 10px;
+  color: rgba(0, 0, 0, 0.87);
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: normal;
+  font-size: 1.17em;
+  color: #00675b;
+  :hover {
+    background-color: rgba(128, 128, 128, 0.1);
+  }
+`;
 export default Header;
