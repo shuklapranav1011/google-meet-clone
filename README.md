@@ -1,3 +1,34 @@
+# **Google-meet-clone** 
+
+###### *visit - https://meet-clone-d6071.web.app/*
+
+## **Description** 
+
+Hey, thanks for visiting my Google Meet Clone. This is a one to one video chat and messaging app based on Google Meet UI.
+Messaging supports group chat but there is no option of group video chat...yet. I will be adding feature of group video chat in future.
+
+## Dependencies used:
+
+- ReactJs, React-hooks, React Router Dom
+- Redux, Redux-Thunk, Redux-dev-tools
+- React Styled-Components
+- Firebase/Firestore, React-firebase-hooks
+- React-responsive-carousel (https://www.npmjs.com/package/react-responsive-carousel)
+
+
+Visit *https://pranav-shukla.netlify.app/* to checkout more of my projects.
+
+Home Page:
+![image](https://user-images.githubusercontent.com/55877875/118049270-22cb8c80-b39b-11eb-9550-3ccf9fb40d96.png)
+
+Call Page :
+![image](https://user-images.githubusercontent.com/55877875/118049322-35de5c80-b39b-11eb-84bc-312e8b219d93.png)g)
+
+Demo :
+https://user-images.githubusercontent.com/55877875/118049441-5dcdc000-b39b-11eb-9b6c-226a28735b1d.mp4
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
