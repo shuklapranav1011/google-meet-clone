@@ -29,21 +29,17 @@ Call Page :
 Demo :
 https://user-images.githubusercontent.com/55877875/118049441-5dcdc000-b39b-11eb-9b6c-226a28735b1d.mp4
 
-Useful links:
+**Useful links**:
 
-WebRTC :
+**WebRTC** :
  
- Protocols:
+_ Protocols :_   https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Protocols
  
- https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Protocols
- 
- WebRTC API: 
- 
- https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API#webrtc_concepts_and_usage
+ _WebRTC API : _  https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API#webrtc_concepts_and_usage
 
-Firebase/WebRTC : https://github.com/fireship-io/webrtc-firebase-demo/blob/main/main.js
+**Firebase/WebRTC : ** https://github.com/fireship-io/webrtc-firebase-demo/blob/main/main.js
 
-Why no Free TURN Server : https://bloggeek.me/google-free-turn-server/
+**Why no Free TURN Server : ** https://bloggeek.me/google-free-turn-server/
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 
