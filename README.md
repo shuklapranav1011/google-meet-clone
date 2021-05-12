@@ -37,9 +37,9 @@ _ Protocols :_   https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Pro
  
  _WebRTC API : _  https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API#webrtc_concepts_and_usage
 
-**Firebase/WebRTC : ** https://github.com/fireship-io/webrtc-firebase-demo/blob/main/main.js
+**Firebase/WebRTC :** https://github.com/fireship-io/webrtc-firebase-demo/blob/main/main.js
 
-**Why no Free TURN Server : ** https://bloggeek.me/google-free-turn-server/
+**Why no Free TURN Server :** https://bloggeek.me/google-free-turn-server/
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 
