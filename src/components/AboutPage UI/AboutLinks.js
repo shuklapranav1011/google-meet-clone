@@ -6,8 +6,9 @@ const AboutLinksDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 4rem;
+  overflow: auto;
   a {
-    font-size: var(--l-length-s);
     color: var(--main-color-purple);
     font-size: 2rem;
     transition-property: color, transform, animation;
