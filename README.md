@@ -18,8 +18,6 @@ Since I don't have access to any TURN servers, video call is possible only betwe
 - React-responsive-carousel (https://www.npmjs.com/package/react-responsive-carousel)
 
 
-Visit *https://pranav-shukla.netlify.app/* to checkout more of my projects.
-
 **Home Page:**
 
 ![image](https://user-images.githubusercontent.com/55877875/118049270-22cb8c80-b39b-11eb-9550-3ccf9fb40d96.png)
