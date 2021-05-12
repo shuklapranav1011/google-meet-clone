@@ -9,10 +9,10 @@ const Login = () => {
     e.preventDefault();
     auth.signInWithPopup(providerGoogle).catch((err) => console.log(err));
   };
-  const signInGithub = (e) => {
-    e.preventDefault();
-    auth.signInWithPopup(providerGithub).catch((err) => console.log(err));
-  };
+  // const signInGithub = (e) => {
+  //   e.preventDefault();
+  //   auth.signInWithPopup(providerGithub).catch((err) => console.log(err));
+  // };
   return (
     <LoginContainer>
       <LoginLogoContainer>
@@ -20,7 +20,31 @@ const Login = () => {
         <h1>Sign In</h1>
         <p>Google Meet Clone</p>
         <Button onClick={signInGoogle}> Sign In via Google</Button>
-        <Button onClick={signInGithub}>Sign In via Github</Button>
+        {/* <Button onClick={signInGithub}>Sign In via Github</Button> */}
+        <Button
+          href='/about'
+          style={{
+            width: 'fit-content',
+            padding: '5px 10px',
+            marginLeft: '5px',
+            position: 'absolute',
+            right: '30px',
+            top: '20px',
+            textTransform: 'none',
+            borderRadius: '5px',
+          }}
+          target='_blank'
+        >
+          <p style={{ color: '#63676c', fontSize: 'normal', padding: '0 5px' }}>
+            About{' '}
+          </p>
+          <span
+            className='material-icons-outlined'
+            style={{ color: '#63676c', fontSize: '2rem' }}
+          >
+            info
+          </span>
+        </Button>
       </LoginLogoContainer>
     </LoginContainer>
   );
@@ -36,6 +60,8 @@ const LoginContainer = styled.div`
 `;
 
 const LoginLogoContainer = styled.div`
+  border: 1px solid black;
+  position: relative;
   background-color: white;
   padding: 200px;
   text-align: center;

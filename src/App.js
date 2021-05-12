@@ -16,6 +16,7 @@ function App() {
   return (
     <Provider store={store}>
       <Router>
+        <Route exact path='/about' component={About}></Route>
         {loading ? (
           'Loading...'
         ) : !user ? (
