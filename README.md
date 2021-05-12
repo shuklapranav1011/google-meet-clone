@@ -29,6 +29,10 @@ Call Page :
 Demo :
 https://user-images.githubusercontent.com/55877875/118049441-5dcdc000-b39b-11eb-9b6c-226a28735b1d.mp4
 
+Useful links:
+Firebase/WebRTC : https://github.com/fireship-io/webrtc-firebase-demo/blob/main/main.js
+Why no Free TURN Server : https://bloggeek.me/google-free-turn-server/
+
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 # Getting Started with Create React App
