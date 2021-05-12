@@ -20,13 +20,17 @@ Since I don't have access to any TURN servers, video call is possible only betwe
 
 Visit *https://pranav-shukla.netlify.app/* to checkout more of my projects.
 
-Home Page:
+**Home Page:**
+
 ![image](https://user-images.githubusercontent.com/55877875/118049270-22cb8c80-b39b-11eb-9550-3ccf9fb40d96.png)
 
-Call Page :
+
+**Call Page :**
+
 ![image](https://user-images.githubusercontent.com/55877875/118049322-35de5c80-b39b-11eb-84bc-312e8b219d93.png)
 
-Demo :
+**Demo :**
+
 https://user-images.githubusercontent.com/55877875/118049441-5dcdc000-b39b-11eb-9b6c-226a28735b1d.mp4
 
 **Useful links**:
