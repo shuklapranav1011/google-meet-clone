@@ -93,6 +93,8 @@ const About = () => {
           <Fragment>
             <Button
               href='/'
+              git
+              a
               style={{
                 width: 'fit-content',
                 padding: '5px 0',
