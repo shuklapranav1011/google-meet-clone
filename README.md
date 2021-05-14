@@ -1,3 +1,52 @@
+# **Google-meet-clone** 
+
+###### *visit - https://meet-clone-d6071.web.app/*
+
+## **Description** 
+
+Hey, thanks for visiting my Google Meet Clone. This is a one to one video chat and messaging app based on Google Meet UI.
+Messaging supports group chat but there is no option of group video chat...yet. I will be adding feature of group video chat in future.
+
+Since I don't have access to any TURN servers, video call is possible only between devices on the same network.
+
+**Visit :** https://pranav-shukla.netlify.app/  to see all my projects.
+
+## Dependencies used:
+
+- ReactJs, React-hooks, React Router Dom
+- Redux, Redux-Thunk, Redux-dev-tools
+- React Styled-Components
+- Firebase/Firestore, React-firebase-hooks
+- React-responsive-carousel (https://www.npmjs.com/package/react-responsive-carousel)
+
+
+**Home Page:**
+
+![image](https://user-images.githubusercontent.com/55877875/118049270-22cb8c80-b39b-11eb-9550-3ccf9fb40d96.png)
+
+
+**Call Page :**
+
+![image](https://user-images.githubusercontent.com/55877875/118049322-35de5c80-b39b-11eb-84bc-312e8b219d93.png)
+
+**Demo :**
+
+https://user-images.githubusercontent.com/55877875/118049441-5dcdc000-b39b-11eb-9b6c-226a28735b1d.mp4
+
+**Useful links**:
+
+**WebRTC** :
+ 
+_ Protocols :_   https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Protocols
+ 
+ _WebRTC API : _  https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API#webrtc_concepts_and_usage
+
+**Firebase/WebRTC :** https://github.com/fireship-io/webrtc-firebase-demo/blob/main/main.js
+
+**Why no Free TURN Server :** https://bloggeek.me/google-free-turn-server/
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
