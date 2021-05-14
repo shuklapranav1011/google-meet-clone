@@ -374,16 +374,20 @@ const CallPage = () => {
 
   // ---------------- Footer above ------------------------------------------
 
-  useEffect(async () => {
-    await openUserMedia();
-    if (meetingType === 'create') {
-      await createRoom(callInput);
+  useEffect(() => {
+    async function getMedia() {
+      await openUserMedia();
+      if (meetingType === 'create') {
+        await createRoom(callInput);
+      }
+      if (meetingType === 'join') {
+        await joinRoomById(callInput);
+      }
+      console.log('LOCAL STREAM IN USEEFFECT');
+      console.log(localStream);
     }
-    if (meetingType === 'join') {
-      await joinRoomById(callInput);
-    }
-    console.log('LOCAL STREAM IN USEEFFECT');
-    console.log(localStream);
+
+    getMedia();
   }, []);
 
   console.log('LOCAL STREAM OUTSIDE USEEFFECT');
