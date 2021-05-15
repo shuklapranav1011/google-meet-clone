@@ -18,6 +18,7 @@ Since I don't have access to any TURN servers, video call is possible only betwe
 - React Styled-Components
 - Firebase/Firestore, React-firebase-hooks
 - React-responsive-carousel (https://www.npmjs.com/package/react-responsive-carousel)
+- WebRTC
 
 
 **Home Page:**
